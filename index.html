@@ -22,18 +22,19 @@
                   
                     var expression = /[\w]+=["|'](.*)["|']/;
                     var r = v.match(expression);
+                    if(r!=null && r.length>0){
+                      //1~一二三四~000999~18.22~-0.29~-1.57~403793~75287~~344.07~GP - A
+                      var rl = r[1].split('~');
+                      var name = rl[1];
+                      var code = rl[2];
+                      var price = rl[3];
+                      var percent = rl[4];
+                      var step = rl[5];
 
-                    //1~一二三四~000999~18.22~-0.29~-1.57~403793~75287~~344.07~GP - A
-                    var rl = r[1].split('~');
-                    var name = rl[1];
-                    var code = rl[2];
-                    var price = rl[3];
-                    var percent = rl[4];
-                    var step = rl[5];
+                      var color = step < 0 ? "green" : step > 0 ? "red" : "black";
 
-                    var color = step < 0 ? "green" : step > 0 ? "red" : "black";
-
-                    console.log('%\c' + code + `(` + name + `)：` + price + `         ` + step + `（` + percent + `%）`, 'color: ' + color + ';');
+                      console.log('%\c' + code + `(` + name + `)：` + price + `         ` + step + `（` + percent + `%）`, 'color: ' + color + ';');
+                    }
 
                 }
             });
