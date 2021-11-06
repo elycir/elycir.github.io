@@ -10,38 +10,55 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
-        axios.get('https://qt.gtimg.cn/', {
-            params: {
-                q: 's_sh600499,s_sz000723'
-            }
-        })
-        .then(function (response) {
-            var lines = response.data.split(';');
-            lines.forEach(function (v, ix) {
-                if (v != '') {
-                  
-                    var expression = /[\w]+=["|'](.*)["|']/;
-                    var r = v.match(expression);
-                    if(r != null && r.length > 0){
-                      //1~一二三四~000999~18.22~-0.29~-1.57~403793~75287~~344.07~GP - A
-                      var rl = r[1].split('~');
-                      var name = rl[1];
-                      var code = rl[2];
-                      var price = rl[3];
-                      var percent = rl[4];
-                      var step = rl[5];
+        function searchPrice(){
+          console.clear();
 
-                      var color = step < 0 ? "green" : step > 0 ? "red" : "black";
+          axios.get('https://qt.gtimg.cn/', {
+              params: {
+                  q: 's_sh600499,s_sz000723'
+              }
+          })
+          .then(function (response) {
+              var lines = response.data.split(';');
+              lines.forEach(function (v, ix) {
+                  if (v != '') {
+                    
+                      var expression = /[\w]+=["|'](.*)["|']/;
+                      var r = v.match(expression);
+                      if(r != null && r.length > 0){
+                        //1~一二三四~000999~18.22~-0.29~-1.57~403793~75287~~344.07~GP - A
+                        var rl = r[1].split('~');
+                        var name = rl[1];
+                        var code = rl[2];
+                        var price = rl[3];
+                        var percent = rl[4];
+                        var step = rl[5];
 
-                      console.log('%\c' + code + `(` + name + `)：` + price + `         ` + step + `（` + percent + `%）`, 'color: ' + color + ';');
-                    }
+                        var color = step < 0 ? "green" : step > 0 ? "red" : "black";
 
-                }
-            });
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
+                        console.log('%\c' + code + `(` + name + `)：` + price + `         ` + step + `（` + percent + `%）`, 'color: ' + color + ';');
+                      }
+
+                  }
+              });
+          })
+          .catch(function (error) {
+              console.log(error);
+          })
+        }
+        var cycleTimer = null;
+        function doCycleSearch(){
+          console.log(new Date().toLocaleDateString())
+          cycleTimer = setInterval(searchPrice,2000);
+        }
+        function cancelCycle(){
+          if(cycleTimer!=null){
+            clearInterval(cycleTimer);
+          }
+        }
+        $(function(){
+            searchPrice();
+        });
     </script>
 </head>
 <body>
@@ -68,7 +85,12 @@
         <h5 id="axios-put-url-data-config">axios#put(url[, data[, config]])</h5>
         <h5 id="axios-patch-url-data-config">axios#patch(url[, data[, config]])</h5>
         <h5 id="axios-get-uri-config">axios#getUri([config])</h5>
-
+        <div class="links">
+          <a href="javascript:;" onclick="doCycleSearch()">keep realing</a>
+          &emsp;
+          &emsp;
+          <a href="javascript:;" onclick="cancelCycle()">cancel realing</a>
+        </div>
         <div class="links">
 
             <a href="/docs/api_intro" class="next-link">
