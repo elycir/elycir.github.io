@@ -16,7 +16,6 @@
             }
         })
             .then(function (response) {
-                console.log(response.data);
                 var lines = response.data.split(';');
                 lines.forEach(function (v, ix) {
                     if (v != '') {
