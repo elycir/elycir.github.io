@@ -9,6 +9,7 @@
     <title>Test Page</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vConsole/3.9.4/vconsole.min.js" integrity="sha512-5cpgYVs5zZ/w3/j+/Lqs7jIZbExE3sM0/l3lgylGOALKRk2LGeBkZWK6L5o3k0Anga/0YMDeCHbtW/b10v+CiA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
         function searchPrice(){
           console.clear();
@@ -48,8 +49,7 @@
         }
         var cycleTimer = null;
         function doCycleSearch(){
-          console.log(new Date().toLocaleDateString())
-          cycleTimer = setInterval(searchPrice,2000);
+          cycleTimer = setInterval(searchPrice,3000);
         }
         function cancelCycle(){
           if(cycleTimer!=null){
@@ -57,7 +57,8 @@
           }
         }
         $(function(){
-            searchPrice();
+          var vConsole = new window.VConsole();
+          searchPrice();
         });
     </script>
 </head>
