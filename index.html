@@ -18,11 +18,11 @@
             .then(function (response) {
                 console.log(response.data);
                 var lines = response.data.split(';');
-                lines.forEach(v, ix){
+                lines.forEach(function (v, ix) {
                     if (v != '') {
                         console.log(v);
                     }
-                }
+                });
             })
             .catch(function (error) {
                 console.log(error);
