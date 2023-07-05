@@ -17,7 +17,7 @@
           console.clear();
           axios.get('https://qt.gtimg.cn/', {
               params: {
-                q: 's_sh601788,s_sh601881,s_sz000837,s_sz300007,s_sz002472,s_sz300081,s_sz300718,s_sz300553,s_sh605338,s_sz000048,s_sz002820,s_sz300181'
+                q: 's_sz300982,s_sh603105,s_sh600021,s_sh601226,s_sh600475,s_sh603169,s_sz300423,s_sz300323,s_sz300162,s_sz300708,s_sz300812'
               }
           })
           .then(function (response) {
@@ -30,7 +30,7 @@
                       if(r != null && r.length > 0){
                         //1~一二三四~000999~18.22~-0.29~-1.57~403793~75287~~344.07~GP - A
                         var rl = r[1].split('~');
-                        var name = pinyinUtil.getFirstLetter(rl[1]);
+                        var name = rl[1]; //pinyinUtil.getFirstLetter(rl[1]);
                         var code = rl[2];
                         var price = rl[3];
                         var step = rl[4];
