@@ -17,7 +17,7 @@
           console.clear();
           axios.get('https://qt.gtimg.cn/', {
               params: {
-                q: ',s_sh513050,s_sz000665,s_sz002620,s_sz300114,s_sz300237,s_sz300745,s_sz300455,s_sz301488,s_sh512290,s_sh516110,s_sh601162,s_sz301499,s_sh600467,s_sh600467,s_sh600533'
+                q: ',s_sh513050,s_sz000665,s_sz002620,s_sz300114,s_sz300237,s_sz300745,s_sz300455,s_sz301488,s_sh512290,s_sh516110,s_sh601162,s_sz301499,s_sh600467,s_sh600533'
               }
           })
           .then(function (response) {
@@ -52,7 +52,7 @@
         }
         var cycleTimer = null;
         function doCycleSearch(){
-          cycleTimer = setInterval(searchPrice,10000);
+          cycleTimer = setInterval(searchPrice,8000);
         }
         function cancelCycle(){
           if(cycleTimer!=null){
