@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge">
+    <title>Test Page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vConsole/3.9.4/vconsole.min.js" integrity="sha512-5cpgYVs5zZ/w3/j+/Lqs7jIZbExE3sM0/l3lgylGOALKRk2LGeBkZWK6L5o3k0Anga/0YMDeCHbtW/b10v+CiA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/pinyin/pinyin_dict_firstletter.js"></script>
+    <script src="/js/pinyin/pinyinUtil.js"></script>
+    <script type="text/javascript">
+        function searchPrice(){
+          console.clear();
+          //603977
+          axios.get('https://qt.gtimg.cn/', {
+              params: {
+                q: 's_sz301236,s_sz300688,s_sz002465,s_sz300638,s_sh600552,s_sz300797,s_sz000851,s_sz000413,s_sz002512,s_sz300031,s_sz002369,s_sh600418'
+              }
+          })
+          .then(function (response) {
+              var lines = response.data.split(';');
+              lines.forEach(function (v, ix) {
+                  if (v != '') {
+                    
+                      var expression = /[\w]+=["|'](.*)["|']/;
+                      var r = v.match(expression);
+                      if(r != null && r.length > 0){
+                        //1~一二三四~000999~18.22~-0.29~-1.57~403793~75287~~344.07~GP - A
+                        var rl = r[1].split('~');
+                        var name = rl[1];
+                        var code = rl[2];
+                        var price = rl[3];
+                        var step = rl[4];
+                        var percent = rl[5];
+
+                        var color = step < 0 ? "green" : step > 0 ? "red" : "black";
+                        color = 'black';
+                        //console.log(r[1]);
+                        // console.log('%c ' + code + `(` + name + `)：` + price + `         ` + step + `（` + percent + `%）`, 'color: ' + color + ';');
+                        console.log('%c ' + `(` + name + `)：` + price + `         ` + step + `（` + percent + `%）`, 'color: ' + color + ';');
+                      }
+
+                  }
+              });
+              setTimeout(doCycleSearch,6000);
+          })
+          .catch(function (error) {
+              console.log(error);
+          })
+        }
+        var cycleTimer = null;
+        function doCycleSearch(){
+          cycleTimer = setInterval(searchPrice,6000);
+        }
+        function cancelCycle(){
+          if(cycleTimer!=null){
+            clearInterval(cycleTimer);
+          }
+        }
+        $(function(){
+          var vConsole = new window.VConsole();
+          searchPrice();
+        });
+    </script>
+</head>
+<body>
+    <div class="body">
+        <h1 class="title">The Axios Instance2</h1>
+        <p class="description"></p>
+        <h3 id="creating-an-instance">Creating an instance</h3>
+        <p>You can create a new instance of axios with a custom config.</p>
+        <h5 id="axios-create-config">axios.create([config])</h5>
+<pre class="lang-js"><code><span class="token keyword">const</span> instance <span class="token operator">=</span> axios<span class="token punctuation">.</span><span class="token method function property-access">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  baseURL<span class="token operator">:</span> <span class="token string">'https://some-domain.com/api/'</span><span class="token punctuation">,</span>
+  timeout<span class="token operator">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+  headers<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token string">'X-Custom-Header'</span><span class="token operator">:</span> <span class="token string">'foobar'</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+        <h3 id="instance-methods">Instance methods</h3>
+        <p>The available instance methods are listed below. The specified config will be merged with the instance config.</p>
+        <h5 id="axios-request-config">axios#request(config)</h5>
+        <h5 id="axios-get-url-config">axios#get(url[, config])</h5>
+        <h5 id="axios-delete-url-config">axios#delete(url[, config])</h5>
+        <h5 id="axios-head-url-config">axios#head(url[, config])</h5>
+        <h5 id="axios-options-url-config">axios#options(url[, config])</h5>
+        <h5 id="axios-post-url-data-config">axios#post(url[, data[, config]])</h5>
+        <h5 id="axios-put-url-data-config">axios#put(url[, data[, config]])</h5>
+        <h5 id="axios-patch-url-data-config">axios#patch(url[, data[, config]])</h5>
+        <h5 id="axios-get-uri-config">axios#getUri([config])</h5>
+        <div class="links">
+          <a href="javascript:;" onclick="doCycleSearch()">keep realing</a>
+          &emsp;
+          &emsp;
+          <a href="javascript:;" onclick="cancelCycle()">cancel realing</a>
+          &emsp;
+          <a href="0901.html">0901</a>
+          <a href="0904.html">0904</a>
+        </div>
+        <div class="links">
+
+            <a href="/docs/api_intro" class="next-link">
+                <span>« Previous</span>
+                <span class="l"> Axios API </span>
+            </a>
+
+            <a href="/docs/req_config" class="next-link">
+                <span>Next »</span>
+                <span class="l"> Request Config </span>
+            </a>
+
+        </div>
+    </div>
+</body>
+</html>
