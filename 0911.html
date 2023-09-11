@@ -13,6 +13,7 @@
     <script src="/js/pinyin/pinyin_dict_firstletter.js"></script>
     <script src="/js/pinyin/pinyinUtil.js"></script>
     <script type="text/javascript">
+      var cycleTimer = null;
         function searchPrice(){
           console.clear();
           //603977
@@ -46,13 +47,14 @@
 
                   }
               });
-              setTimeout(doCycleSearch,6000);
+              setTimeout(function(){
+                cycleTimer = setInterval(searchPrice,6000);
+              },6000);
           })
           .catch(function (error) {
               console.log(error);
           })
         }
-        var cycleTimer = null;
         function doCycleSearch(){
           cycleTimer = setInterval(searchPrice,6000);
         }
