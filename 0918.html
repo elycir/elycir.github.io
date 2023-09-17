@@ -13,12 +13,13 @@
     <script src="/js/pinyin/pinyin_dict_firstletter.js"></script>
     <script src="/js/pinyin/pinyinUtil.js"></script>
     <script type="text/javascript">
+      var cycleTimer = null;
         function searchPrice(){
           console.clear();
           //603977
           axios.get('https://qt.gtimg.cn/', {
               params: {
-                q: 's_sz300243,s_sz300475,s_sz300892,s_sz002907,s_sz000821,s_sz301022,s_sz002211,s_sh603258'
+                q: 's_sh603728,s_sh603667,s_sz300404,s_sh600285,s_sz300630,s_sz300149,s_sz300521,s_sh600100'
               }
           })
           .then(function (response) {
@@ -51,9 +52,8 @@
               console.log(error);
           })
         }
-        var cycleTimer = null;
         function doCycleSearch(){
-          cycleTimer = setInterval(searchPrice,10000);
+          cycleTimer = setInterval(searchPrice,6000);
         }
         function cancelCycle(){
           if(cycleTimer!=null){
@@ -96,7 +96,9 @@
           &emsp;
           <a href="javascript:;" onclick="cancelCycle()">cancel realing</a>
           &emsp;
-          <a href="0904.html">0904</a>
+          <a href="0913.html">0913</a>
+          &emsp;
+          <a href="0918.html">0918</a>
         </div>
         <div class="links">
 

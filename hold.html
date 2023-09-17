@@ -13,11 +13,13 @@
     <script src="/js/pinyin/pinyin_dict_firstletter.js"></script>
     <script src="/js/pinyin/pinyinUtil.js"></script>
     <script type="text/javascript">
+      var cycleTimer = null;
         function searchPrice(){
           console.clear();
+          //603977
           axios.get('https://qt.gtimg.cn/', {
               params: {
-                  q: 's_sz000807,s_sz000933,s_sz300170,s_sz002268,s_sz300579,s_sh603232,s_sz003029,s_sh600476,s_sz300925,s_sh600446,s_sz301060'
+                q: 's_sz301509,s_sz002368,s_sh562510,s_sz002848,s_sz002670,s_sz300780,s_sz000821,s_sz300368,s_sh603108,s_sh600487,s_sz300053,s_sz002174,s_sz000595'
               }
           })
           .then(function (response) {
@@ -30,7 +32,6 @@
                       if(r != null && r.length > 0){
                         //1~一二三四~000999~18.22~-0.29~-1.57~403793~75287~~344.07~GP - A
                         var rl = r[1].split('~');
-                        // var name = pinyinUtil.getFirstLetter(rl[1]);
                         var name = rl[1];
                         var code = rl[2];
                         var price = rl[3];
@@ -51,9 +52,8 @@
               console.log(error);
           })
         }
-        var cycleTimer = null;
         function doCycleSearch(){
-          cycleTimer = setInterval(searchPrice,10000);
+          cycleTimer = setInterval(searchPrice,6000);
         }
         function cancelCycle(){
           if(cycleTimer!=null){
@@ -68,7 +68,7 @@
 </head>
 <body>
     <div class="body">
-        <h1 class="title">The Axios Instance</h1>
+        <h1 class="title">The Axios Instance2</h1>
         <p class="description"></p>
         <h3 id="creating-an-instance">Creating an instance</h3>
         <p>You can create a new instance of axios with a custom config.</p>
@@ -95,6 +95,10 @@
           &emsp;
           &emsp;
           <a href="javascript:;" onclick="cancelCycle()">cancel realing</a>
+          &emsp;
+          <a href="0913.html">0913</a>
+          &emsp;
+          <a href="0918.html">0918</a>
         </div>
         <div class="links">
 
