@@ -17,7 +17,7 @@
           console.clear();
           axios.get('https://qt.gtimg.cn/', {
               params: {
-                q: 's_sh600958,s_sz002451,s_sz002456,s_sh600895,s_sz300339,s_sz301236,s_sz300031'
+                q: 's_sh603015,s_sh603633,s_sz300538,s_sz301236,s_sz002609,s_sz300210,s_sz300398,s_sh600520'
               }
           })
           .then(function (response) {
@@ -52,7 +52,7 @@
         }
         var cycleTimer = null;
         function doCycleSearch(){
-          cycleTimer = setInterval(searchPrice,10000);
+          cycleTimer = setInterval(searchPrice,6500);
         }
         function cancelCycle(){
           if(cycleTimer!=null){
