@@ -17,7 +17,7 @@
           console.clear();
           axios.get('https://qt.gtimg.cn/', {
               params: {
-                  q: 's_sh603227,s_sh601179,s_sh601958,s_sh588000,s_sh516110,s_sz159852,s_sh515880,s_sz159841,s_sh515790,s_sz159611,s_sz159647,s_sh513050,s_sh513130,s_sh588200,s_sh588260,s_sz159667,s_sz000778,s_sz300042,s_sz300226,s_sz300426,s_sz300188'
+                  q: 's_sz002607,s_sz002176,s_sz000688,s_sz300192,s_sz000710,s_sh603099,s_sh600561,s_sh600558,s_sh600853,s_sh600439'
               }
           })
           .then(function (response) {
@@ -30,7 +30,7 @@
                       if(r != null && r.length > 0){
                         //1~一二三四~000999~18.22~-0.29~-1.57~403793~75287~~344.07~GP - A
                         var rl = r[1].split('~');
-                        var name = pinyinUtil.getFirstLetter(rl[1]);
+                        var name = rl[1];
                         var code = rl[2];
                         var price = rl[3];
                         var step = rl[4];
@@ -52,7 +52,7 @@
         }
         var cycleTimer = null;
         function doCycleSearch(){
-          cycleTimer = setInterval(searchPrice,10000);
+          cycleTimer = setInterval(searchPrice,6500);
         }
         function cancelCycle(){
           if(cycleTimer!=null){
@@ -96,17 +96,32 @@
           <a href="javascript:;" onclick="cancelCycle()">cancel realing</a>
         </div>
         <div class="links">
-
-            <a href="/docs/api_intro" class="next-link">
-                <span>« Previous</span>
-                <span class="l"> Axios API </span>
-            </a>
-
-            <a href="/docs/req_config" class="next-link">
-                <span>Next »</span>
-                <span class="l"> Request Config </span>
-            </a>
-
+          <a href="javascript:;" onclick="doCycleSearch()">keep realing</a>
+          &emsp;
+          &emsp;
+          <a href="javascript:;" onclick="cancelCycle()">cancel realing</a>
+          &emsp;
+          <a href="watch.html">watch</a>
+          <br />
+          <br />
+          &emsp;
+          <a href="recent.html">recent</a>
+          <br />
+          <br />
+          &emsp;
+          <a href="today.html">today</a>
+          <br />
+          <br />
+          &emsp;
+          <a href="hold.html">hold</a>
+          &emsp;
+          <br /><br />
+          <a href="buy.html">buy</a>
+          <br /><br />
+          <a href="plan.html">plan</a>
+          &emsp;
+          <br />
+          <br />
         </div>
     </div>
 </body>
