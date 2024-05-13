@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge">
+    <title>Test Page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vConsole/3.9.4/vconsole.min.js" integrity="sha512-5cpgYVs5zZ/w3/j+/Lqs7jIZbExE3sM0/l3lgylGOALKRk2LGeBkZWK6L5o3k0Anga/0YMDeCHbtW/b10v+CiA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+        $(function(){
+          var vConsole = new window.VConsole();
+        });
+        function showTime(){
+          var no = $("#txtno").val();
+          $("#imgTime").attr("src",'https://image.sinajs.cn/newchart/min/n/' + no + '.gif');
+        }
+    </script>
+</head>
+<body>
+    <div class="body">
+        <h1 class="title">The Axios Instance2</h1>
+        <p class="description"></p>
+        <h3 id="creating-an-instance">Creating an instance</h3>
+        <p>You can create a new instance of axios with a custom config.</p>
+        <h5 id="axios-create-config">axios.create([config])</h5>
+<pre class="lang-js"><code><span class="token keyword">const</span> instance <span class="token operator">=</span> axios<span class="token punctuation">.</span><span class="token method function property-access">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  baseURL<span class="token operator">:</span> <span class="token string">'https://some-domain.com/api/'</span><span class="token punctuation">,</span>
+  timeout<span class="token operator">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+  headers<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token string">'X-Custom-Header'</span><span class="token operator">:</span> <span class="token string">'foobar'</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+        <h3 id="instance-methods">Instance methods</h3>
+        <p>The available instance methods are listed below. The specified config will be merged with the instance config.</p>
+        <div class="links">
+          <input type="text" placeholder="no" id="txtno" width="80px" />
+          <button id="btnShow" type="button" onclick="showTime()">show time image</button>
+          <div>
+            <img src="" width="380" height="210" id="imgTime"  />
+          </div>
+          <br />
+          <br />
+        </div>
+    </div>
+</body>
+</html>
