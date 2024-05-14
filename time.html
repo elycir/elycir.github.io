@@ -7,16 +7,51 @@
     <meta http-equiv="X-UA-Compatible"
           content="ie=edge">
     <title>Test Page</title>
+    <style type="text/css">
+      .dsplnone {
+        display: none;
+      }
+      .show {
+        display: block;
+      }
+      .autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vConsole/3.9.4/vconsole.min.js" integrity="sha512-5cpgYVs5zZ/w3/j+/Lqs7jIZbExE3sM0/l3lgylGOALKRk2LGeBkZWK6L5o3k0Anga/0YMDeCHbtW/b10v+CiA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.11/jquery.autocomplete.js" integrity="sha512-JwPA+oZ5uRgh1AATPhLKeByWbXcsRnMMSBpvhuAGQp+CWISl/fHecOshbRcPPgKWau9Wy1H5LhiwAa4QFiQKYw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
         $(function(){
-          var vConsole = new window.VConsole();
+          var suggestions = [
+            { "result": "sz001316", "value": "sz001316（润贝航科）" },
+            { "result": "sh600023", "value": "sh600023（浙能电力）" },
+            { "result": "sh603629", "value": "sh603629（利通电子）" }
+        ]
+          $('#txtno').autocomplete({
+              lookup: suggestions
+          });
+
+          // [
+          //     'sz001316',
+          //     'sh600023',
+          //     'sh603629',
+          //     'sh600096',
+          //     'sh603698',
+          //     'sz300226',
+          //   ]
         });
         function showTime(){
           var no = $("#txtno").val();
-          $("#imgTime").attr("src",'https://image.sinajs.cn/newchart/min/n/' + no + '.gif');
+          var type = $("#ddlType").val();
+          $("#imgTime").attr("src",'https://image.sinajs.cn/newchart/' + type + '/n/' + no + '.gif');
+          $("#imgTime").parent().show();
+        }
+        function hideTime(){
+          $("#imgTime").parent().hide();
         }
     </script>
 </head>
@@ -35,11 +70,23 @@
 </code></pre>
         <h3 id="instance-methods">Instance methods</h3>
         <p>The available instance methods are listed below. The specified config will be merged with the instance config.</p>
+        <h5 id="axios-get-url-config">axios#get(url[, config])</h5>
+        <h5 id="axios-delete-url-config">axios#delete(url[, config])</h5>
+        <h5 id="axios-head-url-config">axios#head(url[, config])</h5>
+        <h5 id="axios-options-url-config">axios#options(url[, config])</h5>
+        <h5 id="axios-post-url-data-config">axios#post(url[, data[, config]])</h5>
+        <h5 id="axios-put-url-data-config">axios#put(url[, data[, config]])</h5>
+        <h5 id="axios-patch-url-data-config">axios#patch(url[, data[, config]])</h5>
+        <h5 id="axios-get-uri-config">axios#getUri([config])</h5>
         <div class="links">
           <input type="text" placeholder="no" id="txtno" width="80px" />
+          <select id="ddlType" style="width: 60px;">
+            <option value="min">min</option>
+            <option value="daily">daily</option>
+          </select>
           <button id="btnShow" type="button" onclick="showTime()">show time image</button>
-          <div>
-            <img src="" width="380" height="210" id="imgTime"  />
+          <div class="dsplnone">
+            <img src="" width="360" height="180" id="imgTime"  />
           </div>
           <br />
           <br />
